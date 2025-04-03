@@ -211,7 +211,6 @@
 //   );
 // }
 
-
 "use client";
 
 import { useState, useRef, useEffect } from "react";
@@ -266,7 +265,8 @@ export default function Home() {
   // Function to scroll to the bottom of the messages container
   const scrollToBottom = () => {
     if (messagesContainerRef.current) {
-      messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
+      messagesContainerRef.current.scrollTop =
+        messagesContainerRef.current.scrollHeight;
     }
   };
 
@@ -349,35 +349,37 @@ export default function Home() {
     >
       {isSubmitted ? (
         <div className="flex justify-end flex-col h-full w-full max-w-md">
-          <div 
+          <div
             ref={messagesContainerRef}
-            className="flex flex-col p-4 overflow-y-auto mb-4 h-full overflow-y-hidden"
+            className="flex flex-col  justify-end  p-4 overflow-y-auto mb-4 h-full "
           >
-            {messages.map((message, index) => (
-              <div
-                key={index}
-                className={`flex flex-col ${
-                  message.username === username ? "items-end" : "items-start"
-                } mb-4`}
-              >
+            <div>
+              {messages.map((message, index) => (
                 <div
-                  className={`text-sm mb-1 ${
-                    message.username === username ? "text-right" : "text-left"
-                  } text-white`}
+                  key={index}
+                  className={`flex flex-col ${
+                    message.username === username ? "items-end" : "items-start"
+                  } mb-4`}
                 >
-                  {message.username}
+                  <div
+                    className={`text-sm mb-1 ${
+                      message.username === username ? "text-right" : "text-left"
+                    } text-white`}
+                  >
+                    {message.username}
+                  </div>
+                  <div
+                    className={`max-w-[70%] rounded-lg px-3 py-2 break-words ${
+                      message.username === username
+                        ? "bg-blue-100 text-blue-800"
+                        : "bg-gray-100 text-gray-800"
+                    }`}
+                  >
+                    {message.message}
+                  </div>
                 </div>
-                <div
-                  className={`max-w-[70%] rounded-lg px-3 py-2 ${
-                    message.username === username
-                      ? "bg-blue-100 text-blue-800"
-                      : "bg-gray-100 text-gray-800"
-                  }`}
-                >
-                  {message.message}
-                </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <div className="flex px-4 py-4 justify-evenly rounded-2xl bg-gray-900 mx-4 mb-8">
             <div className="text-center flex justify-center flex-col">
